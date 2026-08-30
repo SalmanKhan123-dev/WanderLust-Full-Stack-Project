@@ -1,151 +1,1345 @@
-<% layout("/layouts/boilerplate")%>
+<% layout("/layouts/boilerplate") %>
+
 <script>
-    const mapToken="<%= process.env.MAP_TOKEN %>";
-    const listing= <%- JSON.stringify(listing) %>;
+  const mapToken = "<%= process.env.MAP_TOKEN %>";
+  const listing = <%- JSON.stringify(listing) %>;
 </script>
 
+
 <style>
+
+  /* =========================================================
+     LISTING PAGE
+  ========================================================= */
+
+  .listing-page {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+
+  /* =========================================================
+     HERO IMAGE
+  ========================================================= */
+
   .listing-hero-img {
     width: 100%;
-    height: 45vh;
+    height: 48vh;
+    min-height: 360px;
+
     object-fit: cover;
-    border-radius: 1.2rem;
+
+    border-radius: 1.4rem;
+
+    display: block;
+
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.08);
   }
-  .listing-title {
-    font-family: "Fraunces", serif;
-    font-weight: 600;
-    font-size: 2rem;
-    margin-bottom: 0.2rem;
-  }
-  .listing-meta {
-    color: #555;
-    font-size: 0.95rem;
+
+
+  /* =========================================================
+     LISTING HEADER
+  ========================================================= */
+
+  .listing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 2rem;
+
+    margin-top: 1.8rem;
     margin-bottom: 1.5rem;
   }
-  .info-card {
-    border: none !important;
-    border-radius: 1.1rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    padding: 1.5rem;
+
+  .listing-title {
+    font-family: "Fraunces", serif;
+
+    font-weight: 600;
+
+    font-size: 2.25rem;
+
+    line-height: 1.15;
+
+    margin: 0 0 0.45rem;
   }
-  .price-tag {
-    font-size: 1.4rem;
-    font-weight: 700;
+
+  .listing-meta {
+    display: flex;
+    align-items: center;
+
+    gap: 0.4rem;
+
+    color: #626262;
+
+    font-size: 0.95rem;
+
+    margin: 0;
+  }
+
+  .listing-meta i {
     color: #0d9488;
   }
-  .review-card {
-    border: none !important;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+  .price-tag {
+    font-size: 1.45rem;
+
+    font-weight: 700;
+
+    color: #0d9488;
+
+    white-space: nowrap;
+
+    margin: 0;
   }
-  .review-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background-color: #0d9488;
-    color: white;
+
+  .price-tag span {
+    font-size: 0.9rem;
+
+    color: #666;
+
+    font-weight: 400;
+  }
+
+
+  /* =========================================================
+     LISTING INFORMATION
+  ========================================================= */
+
+  .info-card {
+    border: 1px solid #eeeeee !important;
+
+    border-radius: 1.2rem;
+
+    background: #ffffff;
+
+    padding: 1.5rem 1.6rem;
+
+    box-shadow:
+      0 4px 18px rgba(0, 0, 0, 0.045);
+
+    margin-bottom: 2rem;
+  }
+
+  .host-row {
     display: flex;
+
+    align-items: center;
+
+    gap: 0.8rem;
+
+    padding-bottom: 1.1rem;
+
+    margin-bottom: 1.1rem;
+
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .host-avatar {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #e6f4f3;
+
+    color: #0d9488;
+
+    display: flex;
+
     align-items: center;
     justify-content: center;
-    font-weight: 600;
-    margin-right: 0.6rem;
+
+    font-weight: 700;
+
+    font-size: 1rem;
   }
-  .review-header {
+
+  .host-label {
+    color: #777;
+
+    font-size: 0.78rem;
+
+    margin-bottom: 0.1rem;
+  }
+
+  .host-name {
+    font-size: 0.95rem;
+
+    font-weight: 600;
+
+    color: #222;
+  }
+
+  .description {
+    color: #555;
+
+    line-height: 1.75;
+
+    font-size: 0.96rem;
+
+    margin: 0;
+  }
+
+
+  /* =========================================================
+     OWNER BUTTONS
+  ========================================================= */
+
+  .btns {
     display: flex;
+
     align-items: center;
+
+    gap: 0.7rem;
+
+    margin-bottom: 2.5rem;
+  }
+
+  .edit-btn {
+    background-color: #0d9488 !important;
+
+    border: none !important;
+
+    border-radius: 0.6rem;
+
+    padding: 0.55rem 1.2rem;
+
+    font-weight: 500;
+  }
+
+  .delete-btn {
+    border-radius: 0.6rem;
+
+    padding: 0.55rem 1.2rem;
+  }
+
+
+  /* =========================================================
+     SECTION DIVIDER
+  ========================================================= */
+
+  .section-divider {
+    border: 0;
+
+    border-top: 1px solid #e7e7e7;
+
+    margin: 2.5rem 0;
+  }
+
+
+  /* =========================================================
+     REVIEW SECTION
+  ========================================================= */
+
+  .reviews-section {
+    margin-top: 1rem;
+  }
+
+  .section-heading {
+    font-family: "Fraunces", serif;
+
+    font-size: 1.9rem;
+
+    font-weight: 600;
+
+    margin-bottom: 0.35rem;
+  }
+
+  .section-subtitle {
+    color: #777;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 1.5rem;
+  }
+
+
+  /* =========================================================
+     REVIEW SUMMARY
+  ========================================================= */
+
+  .review-summary {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    padding: 1.1rem 1.3rem;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 1rem;
+
+    background: #fafdfc;
+
+    margin-bottom: 1.5rem;
+  }
+
+  .rating-score {
+    font-size: 1.7rem;
+
+    font-weight: 700;
+
+    color: #222;
+  }
+
+  .rating-stars {
+    color: #0d9488;
+
+    letter-spacing: 1px;
+
+    font-size: 1rem;
+  }
+
+  .rating-count {
+    color: #777;
+
+    font-size: 0.85rem;
+  }
+
+
+  /* =========================================================
+     REVIEW FORM
+  ========================================================= */
+
+  .review-form-card {
+    border: 1px solid #eeeeee;
+
+    border-radius: 1.2rem;
+
+    background: #ffffff;
+
+    padding: 1.5rem;
+
+    margin-bottom: 2rem;
+
+    box-shadow:
+      0 4px 18px rgba(0, 0, 0, 0.04);
+  }
+
+  .review-form-title {
+    font-size: 1.1rem;
+
+    font-weight: 600;
+
+    margin-bottom: 1.2rem;
+  }
+
+  .review-label {
+    font-size: 0.84rem;
+
+    font-weight: 600;
+
+    color: #444;
+
     margin-bottom: 0.5rem;
   }
+
+  .comment-box {
+    min-height: 130px;
+
+    resize: vertical;
+
+    border-radius: 0.75rem;
+
+    border: 1px solid #dddddd;
+
+    padding: 0.85rem 1rem;
+
+    font-size: 0.9rem;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .comment-box:focus {
+    border-color: #0d9488;
+
+    box-shadow:
+      0 0 0 3px rgba(13, 148, 136, 0.1);
+  }
+
+  .review-submit {
+    background: #0d9488;
+
+    border: none;
+
+    color: white;
+
+    border-radius: 0.65rem;
+
+    padding: 0.65rem 1.4rem;
+
+    font-size: 0.88rem;
+
+    font-weight: 600;
+
+    transition:
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .review-submit:hover {
+    background: #0f766e;
+
+    color: white;
+
+    transform: translateY(-1px);
+  }
+
+
+  /* =========================================================
+     STARABILITY OVERRIDE
+  ========================================================= */
+
+  .starability-slot {
+    margin: 0;
+
+    padding: 0;
+  }
+
+
+  /* =========================================================
+     REVIEWS GRID
+  ========================================================= */
+
+  .reviews-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 1rem;
+  }
+
+  .reviews-title {
+    font-size: 1.15rem;
+
+    font-weight: 600;
+
+    margin: 0;
+  }
+
+  .reviews-count {
+    font-size: 0.82rem;
+
+    color: #777;
+  }
+
+  .reviews-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 1rem;
+  }
+
+
+  /* =========================================================
+     REVIEW CARD
+  ========================================================= */
+
+  .review-card {
+    border: 1px solid #eeeeee;
+
+    border-radius: 1.1rem;
+
+    background: #ffffff;
+
+    padding: 1.25rem;
+
+    height: 100%;
+
+    transition:
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .review-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.07);
+  }
+
+  .review-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 0.9rem;
+  }
+
+  .review-user {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.7rem;
+  }
+
+  .review-avatar {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #e6f4f3;
+
+    color: #0d9488;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 0.95rem;
+
+    font-weight: 700;
+  }
+
+  .review-username {
+    font-size: 0.9rem;
+
+    font-weight: 600;
+
+    color: #222;
+
+    margin: 0;
+  }
+
+  .review-verified {
+    font-size: 0.72rem;
+
+    color: #777;
+
+    margin-top: 0.15rem;
+  }
+
+  .review-rating {
+    color: #0d9488;
+
+    font-size: 0.82rem;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+  }
+
+  .review-comment {
+    color: #555;
+
+    font-size: 0.88rem;
+
+    line-height: 1.7;
+
+    margin: 0;
+  }
+
+  .review-delete {
+    margin-top: 1rem;
+
+    border: none;
+
+    background: transparent;
+
+    color: #888;
+
+    padding: 0;
+
+    font-size: 0.78rem;
+  }
+
+  .review-delete:hover {
+    color: #dc3545;
+  }
+
+
+  /* =========================================================
+     EMPTY REVIEW STATE
+  ========================================================= */
+
+  .no-reviews {
+    border: 1px dashed #d8d8d8;
+
+    border-radius: 1rem;
+
+    padding: 2rem;
+
+    text-align: center;
+
+    color: #777;
+
+    background: #fafafa;
+  }
+
+  .no-reviews i {
+    color: #0d9488;
+
+    font-size: 1.5rem;
+
+    margin-bottom: 0.7rem;
+  }
+
+
+  /* =========================================================
+     MAP SECTION
+  ========================================================= */
+
+  .location-section {
+    margin-top: 3rem;
+
+    margin-bottom: 4rem;
+  }
+
+  .location-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-bottom: 1.2rem;
+  }
+
+  .location-title-wrapper {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 0.75rem;
+  }
+
+  .location-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 0.8rem;
+
+    background: #e6f4f3;
+
+    color: #0d9488;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1rem;
+  }
+
+  .location-title {
+    font-family: "Fraunces", serif;
+
+    font-size: 1.8rem;
+
+    font-weight: 600;
+
+    margin: 0 0 0.25rem;
+  }
+
+  .location-subtitle {
+    color: #777;
+
+    font-size: 0.84rem;
+
+    margin: 0;
+
+    line-height: 1.5;
+  }
+
+
+  /* =========================================================
+     MAP CARD
+  ========================================================= */
+
+  .map-card {
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 1.25rem;
+
+    border: 1px solid #e6e6e6;
+
+    background: #f3f5f4;
+
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.07);
+  }
+
+  #map {
+    width: 100%;
+
+    height: 430px;
+
+    display: block;
+  }
+
+  .map-note {
+    position: absolute;
+
+    left: 1rem;
+    bottom: 1rem;
+
+    z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.55rem;
+
+    padding: 0.65rem 0.9rem;
+
+    border-radius: 0.7rem;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+      0 4px 14px rgba(0, 0, 0, 0.12);
+
+    color: #555;
+
+    font-size: 0.76rem;
+  }
+
+  .map-note i {
+    color: #0d9488;
+  }
+
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+
+  @media (max-width: 768px) {
+
+    .listing-page {
+      width: 100%;
+    }
+
+    .listing-hero-img {
+      height: 35vh;
+
+      min-height: 260px;
+
+      border-radius: 1rem;
+    }
+
+    .listing-header {
+      flex-direction: column;
+
+      gap: 0.7rem;
+    }
+
+    .listing-title {
+      font-size: 1.8rem;
+    }
+
+    .price-tag {
+      font-size: 1.25rem;
+    }
+
+    .reviews-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .location-header {
+      flex-direction: column;
+    }
+
+    #map {
+      height: 350px;
+    }
+
+  }
+
+
+  @media (max-width: 480px) {
+
+    .info-card {
+      padding: 1.2rem;
+    }
+
+    .review-form-card {
+      padding: 1.2rem;
+    }
+
+    .review-summary {
+      padding: 1rem;
+    }
+
+    .map-card {
+      border-radius: 1rem;
+    }
+
+    #map {
+      height: 300px;
+    }
+
+    .map-note {
+      left: 0.7rem;
+
+      right: 0.7rem;
+
+      bottom: 0.7rem;
+    }
+
+  }
+
 </style>
 
+
 <body>
-  <div class="row mt-3">
-    <div class="col-lg-8 offset-lg-2">
 
-      <img src="<%= listing.image.url %>" class="listing-hero-img mb-4" alt="listing-image">
+  <main class="listing-page">
 
-      <div class="d-flex justify-content-between align-items-start flex-wrap">
-        <div>
-          <h3 class="listing-title"><%= listing.title %></h3>
-          <p class="listing-meta"><%= listing.location %>, <%= listing.country %></p>
-        </div>
-        <p class="price-tag">&#x20B9;<%= listing.price.toLocaleString("en-IN")%> <span style="font-size:1rem; color:#555; font-weight:400;">/night</span></p>
+    <!-- =====================================================
+         LISTING IMAGE
+    ====================================================== -->
+
+    <img
+      src="<%= listing.image.url %>"
+      class="listing-hero-img"
+      alt="<%= listing.title %>"
+    >
+
+
+    <!-- =====================================================
+         LISTING HEADER
+    ====================================================== -->
+
+    <div class="listing-header">
+
+      <div>
+
+        <h1 class="listing-title">
+          <%= listing.title %>
+        </h1>
+
+        <p class="listing-meta">
+
+          <i class="fa-solid fa-location-dot"></i>
+
+          <span>
+            <%= listing.location %>, <%= listing.country %>
+          </span>
+
+        </p>
+
       </div>
 
-      <div class="card info-card mb-4">
-        <p class="card-text mb-2">Hosted by <b><%= listing.owner.username %></b></p>
-        <p class="card-text mb-0"><%= listing.description %></p>
-      </div>
 
-      <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
-      <div class="btns mb-4">
-        <a href="/listings/<%=listing._id%>/edit" class="btn btn-dark edit-btn me-2">Edit</a>
-        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-            <button class="btn btn-outline-dark">Delete</button>
-        </form>
-      </div>
-      <% } %>
+      <p class="price-tag">
 
-      <hr />
+        &#x20B9;<%= listing.price.toLocaleString("en-IN") %>
 
-      <% if(currUser){ %>
-      <h4 class="mb-3">Leave a Review</h4>
-      <form method="POST" action="/listings/<%= listing.id %>/reviews" class="needs-validation mb-4" novalidate >
-          <div class="mb-3">
-              <label for="rating" class="form-label">Rating</label>
-          <fieldset class="starability-slot">
-              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
-              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-              <label for="first-rate1" title="Terrible">1 star</label>
-              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-              <label for="first-rate2" title="Not good">2 stars</label>
-              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-              <label for="first-rate3" title="Average">3 stars</label>
-              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-              <label for="first-rate4" title="Very good">4 stars</label>
-              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-              <label for="first-rate5" title="Amazing">5 stars</label>
-            </fieldset>
-          </div>  
-          <div class="mb-3">
-              <label for="comment" class="form-label">Comments</label>
-              <textarea id="comment" rows="4" name="review[comment]" class="form-control" required></textarea>
-              <div class="invalid-feedback">Please write your experience here</div>
-          </div>
-          <button class="btn btn-outline-dark">Submit</button>
-      </form>
-      <% } %>
+        <span>
+          / night
+        </span>
 
-      <% if(listing.reviews.length>0){ %>
-      <hr />
-      <p class="mb-3"><b>All Reviews</b></p>
-      <div class="row g-3 mb-4">
-          <%for(review of listing.reviews){ %>
-              <div class="col-md-6">
-                <div class="card review-card p-3 h-100">
-                    <div class="review-header">
-                      <div class="review-avatar"><%= review.author.username.charAt(0).toUpperCase() %></div>
-                      <h6 class="mb-0">@<%= review.author.username %></h6>
-                    </div>
-                    <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
-                    <p class="card-text"><%= review.comment %></p>
-                    <% if(currUser && review.author._id.equals(currUser._id)){ %>
-                    <form method="POST" action="/listings/<%= listing.id %>/reviews/<%=review._id%>?_method=DELETE">
-                            <button class="btn btn-sm btn-outline-dark">Delete</button>
-                    </form>
-                    <% } %>
-                </div>
-              </div>
-          <%  } %>
-      </div>
-      <% } %>
-
-      <div class="mb-5">
-        <h5 class="mb-3">Where you'll be</h5>
-        <div id="map"></div>
-      </div>
+      </p>
 
     </div>
-  </div>
+
+
+    <!-- =====================================================
+         HOST + DESCRIPTION
+    ====================================================== -->
+
+    <div class="info-card">
+
+      <div class="host-row">
+
+        <div class="host-avatar">
+
+          <%= listing.owner.username.charAt(0).toUpperCase() %>
+
+        </div>
+
+        <div>
+
+          <div class="host-label">
+            Hosted by
+          </div>
+
+          <div class="host-name">
+            <%= listing.owner.username %>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p class="description">
+        <%= listing.description %>
+      </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         OWNER CONTROLS
+    ====================================================== -->
+
+    <% if(currUser && listing.owner._id.equals(currUser._id)){ %>
+
+      <div class="btns">
+
+        <a
+          href="/listings/<%= listing._id %>/edit"
+          class="btn btn-dark edit-btn"
+        >
+          <i class="fa-solid fa-pen-to-square me-1"></i>
+          Edit listing
+        </a>
+
+
+        <form
+          method="POST"
+          action="/listings/<%= listing._id %>?_method=DELETE"
+        >
+
+          <button
+            class="btn btn-outline-dark delete-btn"
+          >
+            <i class="fa-regular fa-trash-can me-1"></i>
+            Delete
+          </button>
+
+        </form>
+
+      </div>
+
+    <% } %>
+
+
+    <!-- =====================================================
+         REVIEWS
+    ====================================================== -->
+
+    <section class="reviews-section">
+
+      <hr class="section-divider">
+
+
+      <h2 class="section-heading">
+        Guest reviews
+      </h2>
+
+      <p class="section-subtitle">
+        See what other travelers thought about their stay.
+      </p>
+
+
+      <!-- REVIEW SUMMARY -->
+
+      <% if(listing.reviews.length > 0){ %>
+
+        <div class="review-summary">
+
+          <div class="rating-score">
+            <%= (
+              listing.reviews.reduce(
+                (sum, review) => sum + review.rating,
+                0
+              ) / listing.reviews.length
+            ).toFixed(1) %>
+          </div>
+
+
+          <div>
+
+            <div class="rating-stars">
+
+              ★★★★★
+
+            </div>
+
+            <div class="rating-count">
+
+              Based on
+              <%= listing.reviews.length %>
+              review<%= listing.reviews.length === 1 ? "" : "s" %>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      <% } %>
+
+
+      <!-- REVIEW FORM -->
+
+      <% if(currUser){ %>
+
+        <div class="review-form-card">
+
+          <div class="review-form-title">
+            Share your experience
+          </div>
+
+
+          <form
+            method="POST"
+            action="/listings/<%= listing.id %>/reviews"
+            class="needs-validation"
+            novalidate
+          >
+
+            <div class="mb-4">
+
+              <label
+                for="rating"
+                class="review-label"
+              >
+                Your rating
+              </label>
+
+
+              <fieldset class="starability-slot">
+
+                <input
+                  type="radio"
+                  id="no-rate"
+                  class="input-no-rate"
+                  name="review[rating]"
+                  value="1"
+                  checked
+                  aria-label="No rating."
+                />
+
+
+                <input
+                  type="radio"
+                  id="first-rate1"
+                  name="review[rating]"
+                  value="1"
+                />
+
+                <label
+                  for="first-rate1"
+                  title="Terrible"
+                >
+                  1 star
+                </label>
+
+
+                <input
+                  type="radio"
+                  id="first-rate2"
+                  name="review[rating]"
+                  value="2"
+                />
+
+                <label
+                  for="first-rate2"
+                  title="Not good"
+                >
+                  2 stars
+                </label>
+
+
+                <input
+                  type="radio"
+                  id="first-rate3"
+                  name="review[rating]"
+                  value="3"
+                />
+
+                <label
+                  for="first-rate3"
+                  title="Average"
+                >
+                  3 stars
+                </label>
+
+
+                <input
+                  type="radio"
+                  id="first-rate4"
+                  name="review[rating]"
+                  value="4"
+                />
+
+                <label
+                  for="first-rate4"
+                  title="Very good"
+                >
+                  4 stars
+                </label>
+
+
+                <input
+                  type="radio"
+                  id="first-rate5"
+                  name="review[rating]"
+                  value="5"
+                />
+
+                <label
+                  for="first-rate5"
+                  title="Amazing"
+                >
+                  5 stars
+                </label>
+
+              </fieldset>
+
+            </div>
+
+
+            <div class="mb-4">
+
+              <label
+                for="comment"
+                class="review-label"
+              >
+                Your comments
+              </label>
+
+
+              <textarea
+                id="comment"
+                rows="5"
+                name="review[comment]"
+                class="form-control comment-box"
+                placeholder="Tell other travelers about your experience..."
+                required
+              ></textarea>
+
+
+              <div class="invalid-feedback">
+                Please write about your experience.
+              </div>
+
+            </div>
+
+
+            <button
+              class="review-submit"
+              type="submit"
+            >
+
+              <i class="fa-regular fa-paper-plane me-1"></i>
+
+              Submit review
+
+            </button>
+
+          </form>
+
+        </div>
+
+      <% } %>
+
+
+      <!-- EXISTING REVIEWS -->
+
+      <% if(listing.reviews.length > 0){ %>
+
+        <div class="reviews-header">
+
+          <h3 class="reviews-title">
+            What guests are saying
+          </h3>
+
+          <span class="reviews-count">
+
+            <%= listing.reviews.length %>
+            review<%= listing.reviews.length === 1 ? "" : "s" %>
+
+          </span>
+
+        </div>
+
+
+        <div class="reviews-grid">
+
+          <% for(review of listing.reviews){ %>
+
+            <article class="review-card">
+
+              <div class="review-header">
+
+                <div class="review-user">
+
+                  <div class="review-avatar">
+
+                    <%= review.author.username
+                      .charAt(0)
+                      .toUpperCase() %>
+
+                  </div>
+
+
+                  <div>
+
+                    <p class="review-username">
+                      <%= review.author.username %>
+                    </p>
+
+                    <div class="review-verified">
+                      Guest review
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div class="review-rating">
+
+                  <% for(let i = 0; i < 5; i++){ %>
+
+                    <%= i < review.rating ? "★" : "☆" %>
+
+                  <% } %>
+
+                </div>
+
+              </div>
+
+
+              <p class="review-comment">
+                <%= review.comment %>
+              </p>
+
+
+              <% if(currUser && review.author._id.equals(currUser._id)){ %>
+
+                <form
+                  method="POST"
+                  action="/listings/<%= listing.id %>/reviews/<%= review._id %>?_method=DELETE"
+                >
+
+                  <button
+                    type="submit"
+                    class="review-delete"
+                  >
+
+                    <i class="fa-regular fa-trash-can me-1"></i>
+
+                    Delete review
+
+                  </button>
+
+                </form>
+
+              <% } %>
+
+            </article>
+
+          <% } %>
+
+        </div>
+
+
+      <% } else { %>
+
+
+        <div class="no-reviews">
+
+          <i class="fa-regular fa-comment-dots d-block"></i>
+
+          <strong>
+            No reviews yet
+          </strong>
+
+          <div class="small mt-1">
+            Be the first guest to share your experience.
+          </div>
+
+        </div>
+
+
+      <% } %>
+
+    </section>
+
+
+    <!-- =====================================================
+         LOCATION / MAP
+    ====================================================== -->
+
+    <section class="location-section">
+
+      <div class="location-header">
+
+        <div class="location-title-wrapper">
+
+          <div class="location-icon">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+          </div>
+
+
+          <div>
+
+            <h2 class="location-title">
+              Where you'll be
+            </h2>
+
+            <p class="location-subtitle">
+
+              <%= listing.location %>, <%= listing.country %>
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="map-card">
+
+        <div id="map"></div>
+
+
+        <div class="map-note">
+
+          <i class="fa-solid fa-circle-info"></i>
+
+          <span>
+            Exact location is provided after booking
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- MAP SCRIPT -->
 
   <script src="/js/map.js"></script>
+
 </body>
