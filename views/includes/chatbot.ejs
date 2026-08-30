@@ -1,0 +1,1554 @@
+<!-- =========================================================
+     WANDERLUST AI TRAVEL ASSISTANT
+========================================================= -->
+
+<div class="wl-ai-widget">
+
+  <!-- Floating Button -->
+  <button
+    type="button"
+    class="wl-ai-button"
+    id="wlAiButton"
+    aria-label="Open WanderLust AI Assistant"
+  >
+    <span class="wl-ai-button-icon">
+      <i class="fa-solid fa-sparkles"></i>
+    </span>
+
+    <span class="wl-ai-button-text">
+      WanderLust AI
+    </span>
+  </button>
+
+
+  <!-- Chat Window -->
+  <div
+    class="wl-ai-chat"
+    id="wlAiChat"
+    aria-hidden="true"
+  >
+
+    <!-- HEADER -->
+    <div class="wl-ai-header">
+
+      <div class="wl-ai-header-left">
+
+        <div class="wl-ai-avatar">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+
+        <div>
+          <h3>WanderLust AI</h3>
+
+          <div class="wl-ai-status">
+            <span></span>
+            Travel Assistant
+          </div>
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="wl-ai-close"
+        id="wlAiClose"
+        aria-label="Close assistant"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </div>
+
+
+    <!-- MESSAGES -->
+    <div
+      class="wl-ai-messages"
+      id="wlAiMessages"
+    >
+
+      <!-- Welcome Message -->
+      <div class="wl-ai-message assistant">
+
+        <div class="wl-ai-message-avatar">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+
+        <div class="wl-ai-bubble">
+
+          <p>
+            Hi! I'm your WanderLust travel assistant.
+          </p>
+
+          <p>
+            I can help you find stays, plan trips,
+            discover destinations, and choose a stay
+            based on your budget.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- SUGGESTIONS -->
+      <div
+        class="wl-ai-suggestions"
+        id="wlAiSuggestions"
+      >
+
+        <button
+          type="button"
+          class="wl-ai-suggestion"
+          data-message="Find me a stay"
+        >
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Find a stay
+        </button>
+
+
+        <button
+          type="button"
+          class="wl-ai-suggestion"
+          data-message="Suggest a budget-friendly destination in India"
+        >
+          <i class="fa-solid fa-location-dot"></i>
+          Budget destinations
+        </button>
+
+
+        <button
+          type="button"
+          class="wl-ai-suggestion"
+          data-message="Plan a 3 day trip to Goa"
+        >
+          <i class="fa-solid fa-umbrella-beach"></i>
+          Plan a Goa trip
+        </button>
+
+
+        <button
+          type="button"
+          class="wl-ai-suggestion"
+          data-message="What should I look for when choosing a hotel?"
+        >
+          <i class="fa-solid fa-hotel"></i>
+          Choose a stay
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- TYPING INDICATOR -->
+    <div
+      class="wl-ai-typing"
+      id="wlAiTyping"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+      <small>
+        WanderLust AI is thinking...
+      </small>
+
+    </div>
+
+
+    <!-- INPUT -->
+    <form
+      class="wl-ai-input-area"
+      id="wlAiForm"
+    >
+
+      <input
+        type="text"
+        id="wlAiInput"
+        placeholder="Ask about destinations, stays..."
+        autocomplete="off"
+        maxlength="1000"
+      />
+
+      <button
+        type="submit"
+        id="wlAiSend"
+        aria-label="Send message"
+      >
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<style>
+
+/* =========================================================
+   WANDERLUST AI WIDGET
+========================================================= */
+
+.wl-ai-widget {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 9999;
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   FLOATING BUTTON
+========================================================= */
+
+.wl-ai-button {
+
+  border: none;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+
+  border-radius: 999px;
+
+  background: #0d9488;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(13, 148, 136, 0.28);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.wl-ai-button:hover {
+
+  background: #0f766e;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 30px rgba(13, 148, 136, 0.35);
+}
+
+
+.wl-ai-button-icon {
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.18);
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   CHAT WINDOW
+========================================================= */
+
+.wl-ai-chat {
+
+  position: absolute;
+
+  right: 0;
+  bottom: 64px;
+
+  width: 410px;
+  height: 610px;
+
+  display: none;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 25px 70px rgba(15, 23, 42, 0.18);
+
+  animation: wlAiOpen 0.2s ease;
+}
+
+
+.wl-ai-chat.active {
+  display: flex;
+}
+
+
+@keyframes wlAiOpen {
+
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.wl-ai-header {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 18px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #eef0f2;
+}
+
+
+.wl-ai-header-left {
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+
+.wl-ai-avatar {
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #e6fffb;
+
+  color: #0d9488;
+
+  font-size: 17px;
+}
+
+
+.wl-ai-header h3 {
+
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 15px;
+
+  font-weight: 650;
+}
+
+
+.wl-ai-status {
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 3px;
+
+  color: #6b7280;
+
+  font-size: 11px;
+}
+
+
+.wl-ai-status span {
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #10b981;
+}
+
+
+.wl-ai-close {
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: #6b7280;
+
+  cursor: pointer;
+
+  font-size: 16px;
+}
+
+
+.wl-ai-close:hover {
+
+  background: #f3f4f6;
+
+  color: #111827;
+}
+
+
+/* =========================================================
+   MESSAGE AREA
+========================================================= */
+
+.wl-ai-messages {
+
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 20px 16px;
+
+  background: #fafafa;
+
+  scrollbar-width: thin;
+}
+
+
+.wl-ai-message {
+
+  display: flex;
+
+  gap: 8px;
+
+  margin-bottom: 16px;
+}
+
+
+.wl-ai-message.user {
+
+  justify-content: flex-end;
+}
+
+
+.wl-ai-message-avatar {
+
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #e6fffb;
+
+  color: #0d9488;
+
+  font-size: 11px;
+}
+
+
+.wl-ai-bubble {
+
+  max-width: 82%;
+
+  padding: 11px 13px;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  color: #374151;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+  box-shadow:
+    0 2px 5px rgba(0,0,0,0.025);
+}
+
+
+.wl-ai-message.user .wl-ai-bubble {
+
+  background: #0d9488;
+
+  border-color: #0d9488;
+
+  color: #ffffff;
+
+  border-bottom-right-radius: 4px;
+}
+
+
+.wl-ai-message.assistant .wl-ai-bubble {
+
+  border-bottom-left-radius: 4px;
+}
+
+
+.wl-ai-bubble p {
+
+  margin: 0 0 8px;
+}
+
+
+.wl-ai-bubble p:last-child {
+
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   LISTING CARDS
+========================================================= */
+
+.wl-ai-listings {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  width: 100%;
+
+  margin-top: 4px;
+
+  margin-bottom: 16px;
+
+  padding-left: 35px;
+}
+
+
+.wl-ai-listing-card {
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 3px 10px rgba(15, 23, 42, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.wl-ai-listing-card:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.10);
+}
+
+
+.wl-ai-listing-image {
+
+  width: 100%;
+
+  height: 130px;
+
+  object-fit: cover;
+
+  display: block;
+
+  background: #f1f5f9;
+}
+
+
+.wl-ai-listing-content {
+
+  padding: 11px 12px 12px;
+}
+
+
+.wl-ai-listing-title {
+
+  margin: 0 0 5px;
+
+  color: #111827;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
+}
+
+
+.wl-ai-listing-location {
+
+  margin: 0 0 8px;
+
+  color: #6b7280;
+
+  font-size: 11px;
+}
+
+
+.wl-ai-listing-details {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin-bottom: 10px;
+}
+
+
+.wl-ai-listing-price {
+
+  color: #111827;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+.wl-ai-listing-price span {
+
+  color: #6b7280;
+
+  font-size: 10px;
+
+  font-weight: 400;
+}
+
+
+.wl-ai-listing-guests {
+
+  color: #6b7280;
+
+  font-size: 10px;
+}
+
+
+.wl-ai-view-button {
+
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 8px 10px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #0d9488;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease;
+}
+
+
+.wl-ai-view-button:hover {
+
+  background: #0f766e;
+
+  color: #ffffff;
+
+  text-decoration: none;
+}
+
+
+/* =========================================================
+   SUGGESTIONS
+========================================================= */
+
+.wl-ai-suggestions {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin-left: 35px;
+
+  margin-bottom: 8px;
+}
+
+
+.wl-ai-suggestion {
+
+  border: 1px solid #dce3e5;
+
+  background: #ffffff;
+
+  color: #374151;
+
+  border-radius: 999px;
+
+  padding: 7px 10px;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+
+.wl-ai-suggestion:hover {
+
+  border-color: #0d9488;
+
+  background: #f0fdfa;
+
+  color: #0d9488;
+}
+
+
+.wl-ai-suggestion i {
+
+  margin-right: 4px;
+}
+
+
+/* =========================================================
+   TYPING
+========================================================= */
+
+.wl-ai-typing {
+
+  display: none;
+
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 7px 18px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+}
+
+
+.wl-ai-typing.active {
+
+  display: flex;
+}
+
+
+.wl-ai-typing span {
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #9ca3af;
+
+  animation: wlAiTyping 1.2s infinite;
+}
+
+
+.wl-ai-typing span:nth-child(2) {
+
+  animation-delay: 0.15s;
+}
+
+
+.wl-ai-typing span:nth-child(3) {
+
+  animation-delay: 0.3s;
+}
+
+
+@keyframes wlAiTyping {
+
+  0%, 60%, 100% {
+
+    opacity: 0.35;
+
+    transform: translateY(0);
+
+  }
+
+  30% {
+
+    opacity: 1;
+
+    transform: translateY(-2px);
+
+  }
+
+}
+
+
+.wl-ai-typing small {
+
+  margin-left: 5px;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.wl-ai-input-area {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 12px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #eef0f2;
+}
+
+
+.wl-ai-input-area input {
+
+  flex: 1;
+
+  min-width: 0;
+
+  height: 42px;
+
+  padding: 0 14px;
+
+  border: 1px solid #dfe4e6;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  color: #1f2937;
+
+  background: #ffffff;
+
+  font-size: 13px;
+}
+
+
+.wl-ai-input-area input:focus {
+
+  border-color: #0d9488;
+
+  box-shadow:
+    0 0 0 3px rgba(13,148,136,0.08);
+}
+
+
+.wl-ai-input-area button {
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #0d9488;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+
+.wl-ai-input-area button:hover {
+
+  background: #0f766e;
+}
+
+
+.wl-ai-input-area button:disabled {
+
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+  .wl-ai-widget {
+
+    right: 14px;
+
+    bottom: 14px;
+  }
+
+
+  .wl-ai-button {
+
+    width: 52px;
+
+    height: 52px;
+
+    padding: 0;
+
+    justify-content: center;
+
+    border-radius: 50%;
+  }
+
+
+  .wl-ai-button-text {
+
+    display: none;
+  }
+
+
+  .wl-ai-button-icon {
+
+    width: 34px;
+
+    height: 34px;
+  }
+
+
+  .wl-ai-chat {
+
+    position: fixed;
+
+    left: 10px;
+
+    right: 10px;
+
+    bottom: 76px;
+
+    width: auto;
+
+    height: min(650px, calc(100vh - 100px));
+
+    border-radius: 18px;
+  }
+
+}
+
+</style>
+
+
+<script>
+
+(function () {
+
+  // =========================================================
+  // ELEMENTS
+  // =========================================================
+
+  const button =
+    document.getElementById("wlAiButton");
+
+  const chat =
+    document.getElementById("wlAiChat");
+
+  const close =
+    document.getElementById("wlAiClose");
+
+  const form =
+    document.getElementById("wlAiForm");
+
+  const input =
+    document.getElementById("wlAiInput");
+
+  const messages =
+    document.getElementById("wlAiMessages");
+
+  const typing =
+    document.getElementById("wlAiTyping");
+
+  const sendButton =
+    document.getElementById("wlAiSend");
+
+  const suggestions =
+    document.getElementById("wlAiSuggestions");
+
+
+  // =========================================================
+  // OPEN CHAT
+  // =========================================================
+
+  button.addEventListener("click", function () {
+
+    chat.classList.add("active");
+
+    chat.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    setTimeout(function () {
+
+      input.focus();
+
+    }, 150);
+
+  });
+
+
+  // =========================================================
+  // CLOSE CHAT
+  // =========================================================
+
+  close.addEventListener("click", function () {
+
+    chat.classList.remove("active");
+
+    chat.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+  });
+
+
+  // =========================================================
+  // ESCAPE HTML
+  // =========================================================
+
+  function escapeHtml(text) {
+
+    const div =
+      document.createElement("div");
+
+    div.textContent =
+      text;
+
+    return div.innerHTML;
+
+  }
+
+
+  // =========================================================
+  // FORMAT AI RESPONSE
+  // =========================================================
+
+  function formatResponse(text) {
+
+    return escapeHtml(text)
+
+      .replace(
+        /\*\*(.*?)\*\*/g,
+        "<strong>$1</strong>"
+      )
+
+      .replace(
+        /\n/g,
+        "<br>"
+      );
+
+  }
+
+
+  // =========================================================
+  // ADD TEXT MESSAGE
+  // =========================================================
+
+  function addMessage(
+    text,
+    sender
+  ) {
+
+    const message =
+      document.createElement("div");
+
+    message.className =
+      "wl-ai-message " + sender;
+
+
+    if (sender === "assistant") {
+
+      message.innerHTML = `
+
+        <div class="wl-ai-message-avatar">
+
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        </div>
+
+        <div class="wl-ai-bubble">
+
+          ${formatResponse(text)}
+
+        </div>
+
+      `;
+
+    } else {
+
+      message.innerHTML = `
+
+        <div class="wl-ai-bubble">
+
+          ${escapeHtml(text)}
+
+        </div>
+
+      `;
+
+    }
+
+
+    messages.appendChild(message);
+
+    scrollToBottom();
+
+  }
+
+
+  // =========================================================
+  // ADD LISTING CARDS
+  // =========================================================
+
+  function addListingCards(listings) {
+
+    if (
+      !listings ||
+      !Array.isArray(listings) ||
+      listings.length === 0
+    ) {
+      return;
+    }
+
+
+    const container =
+      document.createElement("div");
+
+    container.className =
+      "wl-ai-listings";
+
+
+    listings.forEach(function (listing) {
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "wl-ai-listing-card";
+
+
+      // -----------------------------------------------------
+      // IMAGE
+      // -----------------------------------------------------
+
+      const image =
+        listing.image ||
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80";
+
+
+      const title =
+        escapeHtml(
+          listing.title ||
+          "Beautiful Stay"
+        );
+
+
+      const location =
+        escapeHtml(
+          listing.location ||
+          "Location unavailable"
+        );
+
+
+      const country =
+        listing.country
+          ? ", " +
+            escapeHtml(
+              listing.country
+            )
+          : "";
+
+
+      const price =
+        listing.price
+          ? Number(
+              listing.price
+            ).toLocaleString("en-IN")
+          : "N/A";
+
+
+      const guests =
+        listing.maxGuests ||
+        10;
+
+
+      card.innerHTML = `
+
+        <img
+          class="wl-ai-listing-image"
+          src="${escapeHtml(image)}"
+          alt="${title}"
+          loading="lazy"
+          onerror="this.style.display='none'"
+        >
+
+
+        <div class="wl-ai-listing-content">
+
+          <h4 class="wl-ai-listing-title">
+            ${title}
+          </h4>
+
+
+          <p class="wl-ai-listing-location">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            ${location}${country}
+
+          </p>
+
+
+          <div class="wl-ai-listing-details">
+
+            <div class="wl-ai-listing-price">
+
+              ₹${price}
+
+              <span>
+                / night
+              </span>
+
+            </div>
+
+
+            <div class="wl-ai-listing-guests">
+
+              <i class="fa-solid fa-user-group"></i>
+
+              Up to ${guests}
+
+            </div>
+
+          </div>
+
+
+          <a
+            href="/listings/${encodeURIComponent(listing.id)}"
+            class="wl-ai-view-button"
+          >
+
+            View Stay
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </a>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(card);
+
+    });
+
+
+    messages.appendChild(container);
+
+    scrollToBottom();
+
+  }
+
+
+  // =========================================================
+  // SCROLL
+  // =========================================================
+
+  function scrollToBottom() {
+
+    messages.scrollTop =
+      messages.scrollHeight;
+
+  }
+
+
+  // =========================================================
+  // SEND MESSAGE
+  // =========================================================
+
+  async function sendMessage(message) {
+
+    message =
+      message.trim();
+
+
+    if (!message) {
+      return;
+    }
+
+
+    // Add user message
+
+    addMessage(
+      message,
+      "user"
+    );
+
+
+    // Clear input
+
+    input.value = "";
+
+
+    // Disable send
+
+    sendButton.disabled =
+      true;
+
+
+    // Show typing
+
+    typing.classList.add(
+      "active"
+    );
+
+
+    try {
+
+      const response =
+        await fetch(
+          "/chat",
+          {
+
+            method: "POST",
+
+            headers: {
+
+              "Content-Type":
+                "application/json"
+
+            },
+
+            body:
+              JSON.stringify({
+
+                message:
+                  message
+
+              })
+
+          }
+        );
+
+
+      const data =
+        await response.json();
+
+
+      if (
+        !response.ok ||
+        !data.success
+      ) {
+
+        throw new Error(
+          data.message ||
+          "Unable to get AI response."
+        );
+
+      }
+
+
+      // -----------------------------------------------------
+      // AI TEXT RESPONSE
+      // -----------------------------------------------------
+
+      addMessage(
+        data.reply,
+        "assistant"
+      );
+
+
+      // -----------------------------------------------------
+      // REAL MONGODB LISTINGS
+      // -----------------------------------------------------
+
+      if (
+        data.listings &&
+        data.listings.length > 0
+      ) {
+
+        addListingCards(
+          data.listings
+        );
+
+      }
+
+
+      // Hide suggestions after first request
+
+      if (suggestions) {
+
+        suggestions.style.display =
+          "none";
+
+      }
+
+
+    } catch (error) {
+
+      console.error(
+        "WanderLust AI:",
+        error
+      );
+
+
+      addMessage(
+
+        "I'm having trouble connecting right now. Please make sure the WanderLust server and Ollama are running.",
+
+        "assistant"
+
+      );
+
+    } finally {
+
+      typing.classList.remove(
+        "active"
+      );
+
+
+      sendButton.disabled =
+        false;
+
+
+      input.focus();
+
+    }
+
+  }
+
+
+  // =========================================================
+  // FORM SUBMIT
+  // =========================================================
+
+  form.addEventListener(
+    "submit",
+    function (event) {
+
+      event.preventDefault();
+
+      sendMessage(
+        input.value
+      );
+
+    }
+  );
+
+
+  // =========================================================
+  // SUGGESTION BUTTONS
+  // =========================================================
+
+  document
+    .querySelectorAll(
+      ".wl-ai-suggestion"
+    )
+    .forEach(
+      function (suggestion) {
+
+        suggestion.addEventListener(
+          "click",
+          function () {
+
+            const message =
+              this.dataset.message;
+
+            sendMessage(
+              message
+            );
+
+            suggestions.style.display =
+              "none";
+
+          }
+        );
+
+      }
+    );
+
+
+})();
+
+</script>

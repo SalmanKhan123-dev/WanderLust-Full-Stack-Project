@@ -1,124 +1,63 @@
 <% layout("/layouts/boilerplate") %>
 
 <style>
-  /* ==============================
-     HERO
-  ============================== */
-
   .hero {
     position: relative;
     height: 46vh;
     min-height: 320px;
-
     border-radius: 1.5rem;
     overflow: hidden;
-
     margin-bottom: 2.5rem;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     text-align: center;
-
-    background: linear-gradient(
-      135deg,
-      #0d9488 0%,
-      #134e4a 100%
-    );
+    background: #0d9488;
   }
 
   .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-
     background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=60");
-
     background-size: cover;
     background-position: center;
-
     opacity: 0.35;
   }
 
   .hero-content {
     position: relative;
     z-index: 2;
-
     color: white;
-
     padding: 1rem;
   }
 
   .hero-content h1 {
     font-family: "Fraunces", serif;
-
     font-weight: 600;
-
     font-size: 2.6rem;
-
     margin-bottom: 0.5rem;
-
-    letter-spacing: -0.5px;
   }
 
   .hero-content p {
     font-size: 1.05rem;
-
-    opacity: 0.9;
-
+    opacity: 0.95;
     margin-bottom: 0;
   }
 
-
-  /* ==============================
-     MOBILE HERO
-  ============================== */
-
-  @media (max-width: 576px) {
-
-    .hero-content h1 {
-      font-size: 1.8rem;
-    }
-
-    .hero {
-      height: 38vh;
-    }
-
-  }
-
-
-  /* ==============================
-     FILTER SECTION
-  ============================== */
-
   .filter-section {
     margin-bottom: 2.2rem;
-
     width: 100%;
   }
-
-
-  /* IMPORTANT:
-     Everything stays on ONE ROW
-  */
 
   #filters {
     display: flex;
-
-    flex-wrap: nowrap;
-
     align-items: center;
-
-    gap: 0.45rem;
-
+    gap: 0.55rem;
     width: 100%;
-
     overflow-x: auto;
     overflow-y: hidden;
-
-    padding: 0.15rem 0.2rem 0.5rem;
-
+    padding: 0.15rem 0.2rem 0.6rem;
     scrollbar-width: none;
   }
 
@@ -126,176 +65,93 @@
     display: none;
   }
 
-
-  /* ==============================
-     CATEGORY FILTER
-  ============================== */
-
   .filter {
     flex: 0 0 auto;
-
     display: inline-flex;
-
     align-items: center;
     justify-content: center;
-
     gap: 0.35rem;
-
-    padding: 0.5rem 0.8rem;
-
+    padding: 0.55rem 0.9rem;
     min-height: 40px;
-
     border-radius: 999px;
-
     border: 1px solid #e2e2e2;
-
-    background: #ffffff;
-
-    font-size: 0.82rem;
-
+    background: #fff;
     color: #444;
-
-    cursor: pointer;
-
+    font-size: 0.84rem;
+    text-decoration: none;
     white-space: nowrap;
-
-    transition:
-      border-color 0.2s ease,
-      color 0.2s ease,
-      background-color 0.2s ease,
-      transform 0.2s ease;
+    transition: all 0.2s ease;
   }
 
   .filter:hover {
     border-color: #0d9488;
-
     color: #0d9488;
-
-    background-color: #f0fdfa;
-
+    background: #f0fdfa;
     transform: translateY(-1px);
   }
 
-  .filter p {
-    margin: 0;
+  .filter.active {
+    background: #0d9488;
+    border-color: #0d9488;
+    color: white;
+    font-weight: 600;
   }
-
-
-  /* ==============================
-     TAX TOGGLE
-  ============================== */
 
   .tax-toggle {
     flex: 0 0 auto;
-
     display: inline-flex;
-
     align-items: center;
-
     gap: 0.55rem;
-
     min-height: 40px;
-
     padding: 0.5rem 0.8rem;
-
     border: 1px solid #e2e2e2;
-
     border-radius: 999px;
-
-    background: #ffffff;
-
+    background: #fff;
     color: #444;
-
     font-size: 0.82rem;
-
     white-space: nowrap;
-
-    cursor: pointer;
-
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
   }
-
-  .tax-toggle:hover {
-    border-color: #0d9488;
-
-    box-shadow:
-      0 3px 10px rgba(0, 0, 0, 0.06);
-  }
-
-
-  /* ==============================
-     TAX LABEL
-  ============================== */
 
   .tax-label {
     margin: 0;
-
     cursor: pointer;
-
-    white-space: nowrap;
-
     line-height: 1;
   }
 
-
-  /* ==============================
-     CUSTOM SWITCH
-  ============================== */
-
   .tax-switch {
     position: relative;
-
     width: 36px;
     height: 21px;
-
     flex-shrink: 0;
-
     display: block;
   }
 
   .tax-switch input {
     opacity: 0;
-
     width: 0;
     height: 0;
-
     position: absolute;
   }
 
   .tax-slider {
     position: absolute;
-
     inset: 0;
-
     cursor: pointer;
-
     background-color: #d1d5db;
-
     border-radius: 999px;
-
     transition: 0.25s ease;
   }
 
   .tax-slider::before {
     content: "";
-
     position: absolute;
-
     width: 15px;
     height: 15px;
-
     left: 3px;
     top: 3px;
-
-    background-color: #ffffff;
-
+    background-color: white;
     border-radius: 50%;
-
-    box-shadow:
-      0 1px 4px rgba(0, 0, 0, 0.2);
-
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     transition: 0.25s ease;
   }
 
@@ -307,53 +163,35 @@
     transform: translateX(15px);
   }
 
-  .tax-switch input:focus-visible + .tax-slider {
-    box-shadow:
-      0 0 0 3px rgba(13, 148, 136, 0.18);
-  }
-
-
-  /* ==============================
-     TAX INFORMATION
-  ============================== */
-
   .tax-info {
     display: none;
-
     color: #0d9488;
-
     font-size: 0.88rem;
-
     font-weight: 500;
   }
 
-
-  /* ==============================
-     LISTING CARDS
-  ============================== */
-
   .listing-card {
     border: none !important;
-
     border-radius: 1.1rem;
-
     overflow: hidden;
-
     transition:
       transform 0.25s ease,
       box-shadow 0.25s ease;
   }
 
+  .listing-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
   .listing-link:hover .listing-card {
     transform: translateY(-6px);
-
-    box-shadow:
-      0 12px 28px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
   }
 
   .card-img-top {
     height: 15rem;
-
+    object-fit: cover;
     border-radius: 0 !important;
   }
 
@@ -361,105 +199,111 @@
     padding: 0.8rem 0.1rem !important;
   }
 
+  .card-text {
+    margin-bottom: 0;
+  }
+
   .card-text b {
     font-size: 1rem;
-
     font-weight: 600;
   }
 
   .price-line {
     color: #444;
-
     font-size: 0.95rem;
   }
 
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+  }
 
-  /* ==============================
-     LARGE DESKTOP
-  ============================== */
+  .page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
 
-  @media (min-width: 1400px) {
+  .pagination-btn,
+  .page-number {
+    text-decoration: none;
+    color: #111;
+  }
 
-    #filters {
+  .pagination-btn {
+    padding: 0.55rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+  }
+
+  .pagination-btn:hover {
+    border-color: #0d9488;
+    color: #0d9488;
+  }
+
+  .page-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .page-number:hover {
+    color: #0d9488;
+  }
+
+  .page-number.active-page {
+    min-width: 48px;
+    height: 48px;
+    background: #222;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  }
+
+  .no-listings {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: #666;
+  }
+
+  @media (max-width: 576px) {
+    .hero {
+      height: 38vh;
+      min-height: 260px;
+    }
+
+    .hero-content h1 {
+      font-size: 1.8rem;
+    }
+
+    .hero-content p {
+      font-size: 0.9rem;
+    }
+
+    .pagination-container {
       gap: 0.5rem;
     }
 
-    .filter {
-      padding-left: 0.85rem;
-      padding-right: 0.85rem;
-
-      font-size: 0.84rem;
+    .page-numbers {
+      gap: 0.3rem;
     }
-
-    .tax-toggle {
-      padding-left: 0.85rem;
-      padding-right: 0.85rem;
-
-      font-size: 0.84rem;
-    }
-
-  }
-
-
-  /* ==============================
-     TABLET / SMALL SCREEN
-  ============================== */
-
-  @media (max-width: 1200px) {
-
-    #filters {
-      overflow-x: auto;
-
-      flex-wrap: nowrap;
-    }
-
-    .filter,
-    .tax-toggle {
-      flex-shrink: 0;
-    }
-
-  }
-
-
-  /* ==============================
-     MOBILE
-  ============================== */
-
-  @media (max-width: 576px) {
-
-    #filters {
-      gap: 0.45rem;
-
-      padding-bottom: 0.5rem;
-    }
-
-    .filter {
-      padding: 0.5rem 0.75rem;
-
-      font-size: 0.8rem;
-    }
-
-    .tax-toggle {
-      padding: 0.5rem 0.75rem;
-
-      font-size: 0.8rem;
-    }
-
   }
 </style>
 
 
-<body>
-
-
-  <!-- ==============================
-       HERO
-  ============================== -->
+<div class="container-fluid">
 
   <div class="hero">
-
     <div class="hero-content">
-
       <h1>
         Find your next stay, anywhere in the world
       </h1>
@@ -467,155 +311,103 @@
       <p>
         Handpicked homes, cabins, and villas for every kind of traveler
       </p>
-
     </div>
-
   </div>
 
 
-  <!-- ==============================
-       FILTERS
-  ============================== -->
-
-  <div class="filter-section container-fluid">
+  <div class="filter-section">
 
     <div id="filters">
 
-
-      <!-- TRENDING -->
-
-      <div class="filter">
-
+      <a
+        href="/listings"
+        class="filter <%= !category || category === 'trending' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-fire"></i>
-
-        <p>
-          Trending
-        </p>
-
-      </div>
+        Trending
+      </a>
 
 
-      <!-- ROOMS -->
-
-      <div class="filter">
-
+      <a
+        href="/listings?category=rooms"
+        class="filter <%= category === 'rooms' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-bed"></i>
-
-        <p>
-          Rooms
-        </p>
-
-      </div>
+        Rooms
+      </a>
 
 
-      <!-- FARMS -->
-
-      <div class="filter">
-
+      <a
+        href="/listings?category=farms"
+        class="filter <%= category === 'farms' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-cow"></i>
-
-        <p>
-          Farms
-        </p>
-
-      </div>
+        Farms
+      </a>
 
 
-      <!-- AMAZING VIEWS -->
-
-      <div class="filter">
-
-        <i class="fa-solid fa-tower-observation"></i>
-
-        <p>
-          Amazing views
-        </p>
-
-      </div>
-
-
-      <!-- BEACH -->
-
-      <div class="filter">
-
+      <a
+        href="/listings?category=beach"
+        class="filter <%= category === 'beach' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-umbrella-beach"></i>
-
-        <p>
-          Beach
-        </p>
-
-      </div>
+        Beach
+      </a>
 
 
-      <!-- MOUNTAINS -->
-
-      <div class="filter">
-
-        <i class="fa-solid fa-mountain-city"></i>
-
-        <p>
-          Mountains
-        </p>
-
-      </div>
+      <a
+        href="/listings?category=mountains"
+        class="filter <%= category === 'mountains' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-mountain"></i>
+        Mountains
+      </a>
 
 
-      <!-- AMAZING POOLS -->
-
-      <div class="filter">
-
-        <i class="fa-solid fa-water-ladder"></i>
-
-        <p>
-          Amazing pools
-        </p>
-
-      </div>
-
-
-      <!-- ICONIC CITIES -->
-
-      <div class="filter">
-
-        <i class="fa-solid fa-city"></i>
-
-        <p>
-          Iconic cities
-        </p>
-
-      </div>
-
-
-      <!-- CABINS -->
-
-      <div class="filter">
-
+      <a
+        href="/listings?category=cabins"
+        class="filter <%= category === 'cabins' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-house"></i>
-
-        <p>
-          Cabins
-        </p>
-
-      </div>
+        Cabins
+      </a>
 
 
-      <!-- HOTELS -->
-
-      <div class="filter">
-
+      <a
+        href="/listings?category=hotels"
+        class="filter <%= category === 'hotels' ? 'active' : '' %>"
+      >
         <i class="fa-solid fa-hotel"></i>
-
-        <p>
-          Hotels
-        </p>
-
-      </div>
+        Hotels
+      </a>
 
 
-      <!-- ==============================
-           TAX TOGGLE
-           DIRECTLY AFTER HOTELS
-      ============================== -->
+      <a
+        href="/listings?category=desert"
+        class="filter <%= category === 'desert' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-sun"></i>
+        Desert
+      </a>
+
+
+      <a
+        href="/listings?category=lake"
+        class="filter <%= category === 'lake' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-water"></i>
+        Lake
+      </a>
+
+
+      <a
+        href="/listings?category=cities"
+        class="filter <%= category === 'cities' ? 'active' : '' %>"
+      >
+        <i class="fa-solid fa-city"></i>
+        Cities
+      </a>
+
 
       <div class="tax-toggle">
 
@@ -623,7 +415,6 @@
           class="tax-switch"
           for="flexSwitchCheckDefault"
         >
-
           <input
             type="checkbox"
             id="flexSwitchCheckDefault"
@@ -631,9 +422,7 @@
           >
 
           <span class="tax-slider"></span>
-
         </label>
-
 
         <label
           class="tax-label"
@@ -644,128 +433,154 @@
 
       </div>
 
-
     </div>
 
   </div>
 
 
-  <!-- ==============================
-       LISTINGS
-  ============================== -->
-
   <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
 
+    <% if (allListings.length === 0) { %>
 
-    <% for(listing of allListings){ %>
-
-
-      <a
-        href="/listings/<%= listing._id %>"
-        class="listing-link"
-      >
-
-
-        <div class="card listing-card">
-
-
-          <img
-            src="<%= listing.image.url %>"
-            class="card-img-top"
-            alt="listing-image"
-          >
-
-
-          <div class="card-img-overlay"></div>
-
-
-          <div class="card-body">
-
-
-            <p class="card-text">
-
-
-              <b>
-                <%= listing.title %>
-              </b>
-
-
-              <br>
-
-
-              <span class="price-line">
-
-                &#8377;
-
-                <%= listing.price.toLocaleString("en-IN") %>
-
-                /night
-
-
-                <i class="tax-info">
-
-                  &nbsp;&nbsp; +18% GST
-
-                </i>
-
-
-              </span>
-
-
-            </p>
-
-
-          </div>
-
-
+      <div class="col-12">
+        <div class="no-listings">
+          <h4>No listings found</h4>
+          <p>
+            Try another destination or category.
+          </p>
         </div>
-
-
-      </a>
-
+      </div>
 
     <% } %>
 
 
+    <% for (let listing of allListings) { %>
+
+      <div class="col">
+
+        <a
+          href="/listings/<%= listing._id %>"
+          class="listing-link"
+        >
+
+          <div class="card listing-card">
+
+            <img
+              src="<%= listing.image.url %>"
+              class="card-img-top"
+              alt="listing-image"
+            >
+
+            <div class="card-img-overlay"></div>
+
+            <div class="card-body">
+
+              <p class="card-text">
+
+                <b>
+                  <%= listing.title %>
+                </b>
+
+                <br>
+
+                <span class="price-line">
+
+                  &#8377;
+                  <%= listing.price.toLocaleString("en-IN") %>
+                  /night
+
+                  <i class="tax-info">
+                    &nbsp;&nbsp; +18% GST
+                  </i>
+
+                </span>
+
+              </p>
+
+            </div>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    <% } %>
+
   </div>
 
 
-</body>
+  <% if (totalPages > 1) { %>
+
+    <div class="pagination-container">
+
+      <% if (currentPage > 1) { %>
+
+        <a
+          href="/listings?page=<%= currentPage - 1 %><%= category ? '&category=' + category : '' %><%= search ? '&search=' + encodeURIComponent(search) : '' %>"
+          class="pagination-btn"
+        >
+          ← Previous
+        </a>
+
+      <% } %>
+
+
+      <div class="page-numbers">
+
+        <% for (let i = 1; i <= totalPages; i++) { %>
+
+          <a
+            href="/listings?page=<%= i %><%= category ? '&category=' + category : '' %><%= search ? '&search=' + encodeURIComponent(search) : '' %>"
+            class="page-number <%= currentPage === i ? 'active-page' : '' %>"
+          >
+            <%= i %>
+          </a>
+
+        <% } %>
+
+      </div>
+
+
+      <% if (currentPage < totalPages) { %>
+
+        <a
+          href="/listings?page=<%= currentPage + 1 %><%= category ? '&category=' + category : '' %><%= search ? '&search=' + encodeURIComponent(search) : '' %>"
+          class="pagination-btn"
+        >
+          Next →
+        </a>
+
+      <% } %>
+
+    </div>
+
+  <% } %>
+
+</div>
 
 
 <script>
-
   const taxSwitch =
-    document.getElementById(
-      "flexSwitchCheckDefault"
-    );
+    document.getElementById("flexSwitchCheckDefault");
 
+  if (taxSwitch) {
 
-  taxSwitch.addEventListener(
-    "change",
-    () => {
+    taxSwitch.addEventListener("change", () => {
 
       const taxInfo =
-        document.getElementsByClassName(
-          "tax-info"
-        );
-
+        document.getElementsByClassName("tax-info");
 
       for (const info of taxInfo) {
 
-        if (taxSwitch.checked) {
-
-          info.style.display = "inline";
-
-        } else {
-
-          info.style.display = "none";
-
-        }
+        info.style.display =
+          taxSwitch.checked
+            ? "inline"
+            : "none";
 
       }
 
-    }
-  );
+    });
 
+  }
 </script>

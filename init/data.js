@@ -1,5 +1,315 @@
 const sampleListings = [
   {
+    title: "Beachside Villa in Goa",
+    description:
+      "Relax in a beautiful beachside villa with tropical surroundings and easy access to Goa beaches.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3500,
+    location: "Goa",
+    country: "India",
+    geometry: { coordinates: [74.124, 15.2993] },
+  },
+
+  {
+    title: "Heritage Stay in Jaipur",
+    description:
+      "Experience Rajasthan's royal heritage from this charming stay near Jaipur's historic attractions.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2800,
+    location: "Jaipur",
+    country: "India",
+    geometry: { coordinates: [75.7873, 26.9124] },
+  },
+
+  {
+    title: "Luxury Apartment in Mumbai",
+    description:
+      "Modern city apartment offering comfortable accommodation in the heart of Mumbai.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 4200,
+    location: "Mumbai",
+    country: "India",
+    geometry: { coordinates: [72.8777, 19.076] },
+  },
+
+  {
+    title: "Backwater Villa in Alleppey",
+    description:
+      "Enjoy peaceful Kerala backwaters from this relaxing villa surrounded by tropical greenery.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3200,
+    location: "Alleppey",
+    country: "India",
+    geometry: { coordinates: [76.3388, 9.4981] },
+  },
+
+  {
+    title: "Mountain Retreat in Manali",
+    description:
+      "A cozy mountain retreat with spectacular Himalayan views and peaceful surroundings.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2500,
+    location: "Manali",
+    country: "India",
+    geometry: { coordinates: [77.1887, 32.2396] },
+  },
+
+  {
+    title: "Lake View Stay in Udaipur",
+    description:
+      "Stay near the beautiful lakes and historic palaces of the romantic city of Udaipur.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3000,
+    location: "Udaipur",
+    country: "India",
+    geometry: { coordinates: [73.6822, 24.5854] },
+  },
+
+  {
+    title: "Riverside Cottage in Rishikesh",
+    description:
+      "Peaceful riverside accommodation perfect for adventure, yoga and nature lovers.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2200,
+    location: "Rishikesh",
+    country: "India",
+    geometry: { coordinates: [78.2676, 30.0869] },
+  },
+
+  {
+    title: "Palace Heritage Stay in Jodhpur",
+    description:
+      "Discover the Blue City while staying in a traditional Rajasthani heritage property.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3400,
+    location: "Jodhpur",
+    country: "India",
+    geometry: { coordinates: [73.0243, 26.2389] },
+  },
+
+  {
+    title: "Himalayan Cabin in Shimla",
+    description:
+      "Warm and comfortable wooden cabin surrounded by the beautiful mountains of Himachal Pradesh.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1605540436563-5bca919ae766?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2700,
+    location: "Shimla",
+    country: "India",
+    geometry: { coordinates: [77.1734, 31.1048] },
+  },
+
+  {
+    title: "Fort View Stay in Agra",
+    description:
+      "Comfortable accommodation close to the Taj Mahal and Agra Fort.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2400,
+    location: "Agra",
+    country: "India",
+    geometry: { coordinates: [78.0081, 27.1767] },
+  },
+
+  {
+    title: "Ganga View Apartment in Varanasi",
+    description:
+      "Stay close to the famous ghats and experience the spiritual atmosphere of Varanasi.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1561361058-c24cecae35ca?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2000,
+    location: "Varanasi",
+    country: "India",
+    geometry: { coordinates: [83.0107, 25.3176] },
+  },
+
+  {
+    title: "Forest Cottage in Coorg",
+    description:
+      "A peaceful cottage surrounded by coffee plantations and lush green forests.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2800,
+    location: "Coorg",
+    country: "India",
+    geometry: { coordinates: [75.8069, 12.3375] },
+  },
+
+  {
+    title: "Tea Estate Retreat in Munnar",
+    description:
+      "Relax among the famous tea plantations and misty mountains of Munnar.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2600,
+    location: "Munnar",
+    country: "India",
+    geometry: { coordinates: [77.0595, 10.0889] },
+  },
+
+ {
+  title: "Cliffside Retreat in Varkala",
+  description: "A peaceful coastal retreat overlooking the Arabian Sea, perfect for travelers looking for beaches, sunsets and a relaxing getaway.",
+  image: {
+    filename: "varkala-cliff",
+    url: "https://images.unsplash.com/photo-1602308392329-7f7c1c3c4a55?auto=format&fit=crop&w=1200&q=80"
+  },
+  price: 2800,
+  location: "Varkala",
+  country: "India",
+  maxGuests: 4,
+  geometry: {
+    type: "Point",
+    coordinates: [76.7162, 8.7379]
+  }
+},
+
+  {
+    title: "Royal Haveli in Jaisalmer",
+    description:
+      "Traditional haveli accommodation overlooking the golden architecture of Jaisalmer.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2300,
+    location: "Jaisalmer",
+    country: "India",
+    geometry: { coordinates: [70.9083, 26.9157] },
+  },
+
+  {
+    title: "Valley View Stay in Mussoorie",
+    description:
+      "Enjoy panoramic Himalayan valley views from this peaceful hill-station property.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2600,
+    location: "Mussoorie",
+    country: "India",
+    geometry: { coordinates: [78.0747, 30.4598] },
+  },
+
+  {
+    title: "Wildlife Lodge in Ranthambore",
+    description:
+      "Comfortable wildlife lodge perfect for travelers visiting Ranthambore National Park.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1535338454770-8be927b5a00b?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3600,
+    location: "Ranthambore",
+    country: "India",
+    geometry: { coordinates: [76.5026, 26.0173] },
+  },
+
+  {
+    title: "Hill Cottage in Darjeeling",
+    description:
+      "Cozy mountain cottage with access to Darjeeling's tea gardens and Himalayan viewpoints.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2400,
+    location: "Darjeeling",
+    country: "India",
+    geometry: { coordinates: [88.2636, 27.041] },
+  },
+
+  {
+    title: "Beach Resort in Andaman",
+    description:
+      "Tropical island accommodation surrounded by beautiful beaches and clear blue waters.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 4500,
+    location: "Port Blair",
+    country: "India",
+    geometry: { coordinates: [92.7265, 11.6234] },
+  },
+
+  {
+    title: "Heritage Home in Kolkata",
+    description:
+      "Comfortable heritage-inspired stay close to Kolkata's historic landmarks and cultural attractions.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2200,
+    location: "Kolkata",
+    country: "India",
+    geometry: { coordinates: [88.3639, 22.5726] },
+  },
+
+  {
+    title: "Luxury Stay in Hyderabad",
+    description:
+      "Modern accommodation offering easy access to Hyderabad's historic monuments and food districts.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 3200,
+    location: "Hyderabad",
+    country: "India",
+    geometry: { coordinates: [78.4867, 17.385] },
+  },
+
+  {
+    title: "Lakeside Retreat in Nainital",
+    description:
+      "Relaxing hill-station stay near Naini Lake with beautiful mountain surroundings.",
+    image: {
+      filename: "listingimage",
+      url: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=60",
+    },
+    price: 2500,
+    location: "Nainital",
+    country: "India",
+    geometry: { coordinates: [79.4636, 29.3919] },
+  },
+  {
     title: "Cozy Beachfront Cottage",
     description:
       "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
@@ -10,7 +320,7 @@ const sampleListings = [
     price: 1500,
     location: "Malibu",
     country: "United States",
-    geometry:{coordinates:[118.7798,34.0259]}
+    geometry: { coordinates: [118.7798, 34.0259] },
   },
   {
     title: "Modern Loft in Downtown",
@@ -23,7 +333,7 @@ const sampleListings = [
     price: 1200,
     location: "New York City",
     country: "United States",
-    geometry:{coordinates:[74.0060,40.7128]}
+    geometry: { coordinates: [74.006, 40.7128] },
   },
   {
     title: "Mountain Retreat",
@@ -36,7 +346,7 @@ const sampleListings = [
     price: 1000,
     location: "Aspen",
     country: "United States",
-    geometry:{coordinates:[106.8175,39.1911]}
+    geometry: { coordinates: [106.8175, 39.1911] },
   },
   {
     title: "Historic Villa in Tuscany",
@@ -49,7 +359,7 @@ const sampleListings = [
     price: 2500,
     location: "Florence",
     country: "Italy",
-    geometry:{coordinates:[11.2558,43.7696]}
+    geometry: { coordinates: [11.2558, 43.7696] },
   },
   {
     title: "Secluded Treehouse Getaway",
@@ -62,7 +372,7 @@ const sampleListings = [
     price: 800,
     location: "Portland",
     country: "United States",
-    geometry:{coordinates:[122.6784,45.5152]}
+    geometry: { coordinates: [122.6784, 45.5152] },
   },
   {
     title: "Beachfront Paradise",
@@ -75,7 +385,7 @@ const sampleListings = [
     price: 2000,
     location: "Cancun",
     country: "Mexico",
-    geometry:{coordinates:[86.8515,21.1619]}
+    geometry: { coordinates: [86.8515, 21.1619] },
   },
   {
     title: "Rustic Cabin by the Lake",
@@ -88,7 +398,7 @@ const sampleListings = [
     price: 900,
     location: "Lake Tahoe",
     country: "United States",
-    geometry:{coordinates:[120.0324,39.0968]}
+    geometry: { coordinates: [120.0324, 39.0968] },
   },
   {
     title: "Luxury Penthouse with City Views",
@@ -101,7 +411,7 @@ const sampleListings = [
     price: 3500,
     location: "Los Angeles",
     country: "United States",
-    geometry:{coordinates:[118.2437,34.0522]}
+    geometry: { coordinates: [118.2437, 34.0522] },
   },
   {
     title: "Ski-In/Ski-Out Chalet",
@@ -114,7 +424,7 @@ const sampleListings = [
     price: 3000,
     location: "Verbier",
     country: "Switzerland",
-    geometry:{coordinates:[7.2277,46.0979]}
+    geometry: { coordinates: [7.2277, 46.0979] },
   },
   {
     title: "Safari Lodge in the Serengeti",
@@ -127,7 +437,7 @@ const sampleListings = [
     price: 4000,
     location: "Serengeti National Park",
     country: "Tanzania",
-    geometry:{coordinates:[34.6857,2.1540]}
+    geometry: { coordinates: [34.6857, 2.154] },
   },
   {
     title: "Historic Canal House",
@@ -140,7 +450,7 @@ const sampleListings = [
     price: 1800,
     location: "Amsterdam",
     country: "Netherlands",
-    geometry:{coordinates:[4.9041,52.3676]}
+    geometry: { coordinates: [4.9041, 52.3676] },
   },
   {
     title: "Private Island Retreat",
@@ -153,7 +463,7 @@ const sampleListings = [
     price: 10000,
     location: "Fiji",
     country: "Fiji",
-    geometry:{coordinates:[178.4500,18.1240]}
+    geometry: { coordinates: [178.45, 18.124] },
   },
   {
     title: "Charming Cottage in the Cotswolds",
@@ -166,7 +476,7 @@ const sampleListings = [
     price: 1200,
     location: "Cotswolds",
     country: "United Kingdom",
-    geometry:{coordinates:[1.2466,51.7612]}
+    geometry: { coordinates: [1.2466, 51.7612] },
   },
   {
     title: "Historic Brownstone in Boston",
@@ -179,7 +489,7 @@ const sampleListings = [
     price: 2200,
     location: "Boston",
     country: "United States",
-    geometry:{coordinates:[71.0589,42.3601]}
+    geometry: { coordinates: [71.0589, 42.3601] },
   },
   {
     title: "Beachfront Bungalow in Bali",
@@ -192,7 +502,7 @@ const sampleListings = [
     price: 1800,
     location: "Bali",
     country: "Indonesia",
-    geometry:{coordinates:[115.0920,8.3405]}
+    geometry: { coordinates: [115.092, 8.3405] },
   },
   {
     title: "Mountain View Cabin in Banff",
@@ -205,7 +515,7 @@ const sampleListings = [
     price: 1500,
     location: "Banff",
     country: "Canada",
-    geometry:{coordinates:[115.5708,51.1784]}
+    geometry: { coordinates: [115.5708, 51.1784] },
   },
   {
     title: "Art Deco Apartment in Miami",
@@ -218,7 +528,7 @@ const sampleListings = [
     price: 1600,
     location: "Miami",
     country: "United States",
-    geometry:{coordinates:[80.1918,25.7617]}
+    geometry: { coordinates: [80.1918, 25.7617] },
   },
   {
     title: "Tropical Villa in Phuket",
@@ -231,7 +541,7 @@ const sampleListings = [
     price: 3000,
     location: "Phuket",
     country: "Thailand",
-    geometry:{coordinates:[98.3923,7.8804]}
+    geometry: { coordinates: [98.3923, 7.8804] },
   },
   {
     title: "Historic Castle in Scotland",
@@ -244,7 +554,7 @@ const sampleListings = [
     price: 4000,
     location: "Scottish Highlands",
     country: "United Kingdom",
-    geometry:{coordinates:[-4.2026,56.4907]}
+    geometry: { coordinates: [-4.2026, 56.4907] },
   },
   {
     title: "Desert Oasis in Dubai",
@@ -257,7 +567,7 @@ const sampleListings = [
     price: 5000,
     location: "Dubai",
     country: "United Arab Emirates",
-    geometry:{coordinates:[55.2962,25.2769]}
+    geometry: { coordinates: [55.2962, 25.2769] },
   },
   {
     title: "Rustic Log Cabin in Montana",
@@ -270,7 +580,7 @@ const sampleListings = [
     price: 1100,
     location: "Montana",
     country: "United States",
-    geometry:{coordinates:[110.3626,46.8797]}
+    geometry: { coordinates: [110.3626, 46.8797] },
   },
   {
     title: "Beachfront Villa in Greece",
@@ -283,7 +593,7 @@ const sampleListings = [
     price: 2500,
     location: "Mykonos",
     country: "Greece",
-    geometry:{coordinates:[25.3289,37.4467]}
+    geometry: { coordinates: [25.3289, 37.4467] },
   },
   {
     title: "Eco-Friendly Treehouse Retreat",
@@ -296,7 +606,7 @@ const sampleListings = [
     price: 750,
     location: "Costa Rica",
     country: "Costa Rica",
-    geometry:{coordinates:[82.7382,9.7489]}
+    geometry: { coordinates: [82.7382, 9.7489] },
   },
   {
     title: "Historic Cottage in Charleston",
@@ -309,7 +619,7 @@ const sampleListings = [
     price: 1600,
     location: "Charleston",
     country: "United States",
-    geometry:{coordinates:[79.9311,32.7765]}
+    geometry: { coordinates: [79.9311, 32.7765] },
   },
   {
     title: "Modern Apartment in Tokyo",
@@ -322,7 +632,7 @@ const sampleListings = [
     price: 2000,
     location: "Tokyo",
     country: "Japan",
-    geometry:{coordinates:[139.6917,35.6895]}
+    geometry: { coordinates: [139.6917, 35.6895] },
   },
   {
     title: "Lakefront Cabin in New Hampshire",
@@ -335,7 +645,7 @@ const sampleListings = [
     price: 1200,
     location: "New Hampshire",
     country: "United States",
-    geometry:{coordinates:[71.5724,43.1939]}
+    geometry: { coordinates: [71.5724, 43.1939] },
   },
   {
     title: "Luxury Villa in the Maldives",
@@ -348,7 +658,7 @@ const sampleListings = [
     price: 6000,
     location: "Maldives",
     country: "Maldives",
-    geometry:{coordinates:[72.5362,1.9247]}
+    geometry: { coordinates: [72.5362, 1.9247] },
   },
   {
     title: "Ski Chalet in Aspen",
@@ -361,7 +671,7 @@ const sampleListings = [
     price: 4000,
     location: "Aspen",
     country: "United States",
-    geometry:{coordinates:[106.8175,39.1911]}
+    geometry: { coordinates: [106.8175, 39.1911] },
   },
   {
     title: "Secluded Beach House in Costa Rica",
@@ -374,7 +684,7 @@ const sampleListings = [
     price: 1800,
     location: "Costa Rica",
     country: "Costa Rica",
-    geometry:{coordinates:[82.9382,8.6380]}
+    geometry: { coordinates: [82.9382, 8.638] },
   },
 ];
 
