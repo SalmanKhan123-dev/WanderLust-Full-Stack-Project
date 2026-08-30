@@ -17,3 +17,25 @@
     }, false)
   })
 })()
+// Auto-hide navbar on scroll down, show on scroll up
+let lastScroll = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll <= 0) {
+    navbar.style.transform = 'translateY(0)';
+    return;
+  }
+
+  if (currentScroll > lastScroll) {
+    // scrolling down
+    navbar.style.transform = 'translateY(-100%)';
+  } else {
+    // scrolling up
+    navbar.style.transform = 'translateY(0)';
+  }
+
+  lastScroll = currentScroll;
+});
