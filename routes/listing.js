@@ -24,6 +24,14 @@ router.get(
   listingController.renderNewForm
 );
 
+// One-time utility route: visit /listings/assign-categories once in your
+// browser to tag all existing listings with a category. Safe to run again
+// any time (e.g. after adding new sample data) since it just re-tags everything.
+router.get(
+  "/assign-categories",
+  wrapAsync(listingController.assignCategories)
+);
+
 router
   .route("/:id")
   .get(wrapAsync(listingController.showListing))
