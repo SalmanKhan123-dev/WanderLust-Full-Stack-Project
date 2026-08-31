@@ -99,6 +99,59 @@
   border-radius: 25px;
   padding: 0.4rem 1.1rem !important;
 }
+
+/* Mobile offcanvas menu styling */
+.offcanvas-body .navbar-nav .nav-link {
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222 !important;
+  border-bottom: 1px solid #f0f0f0;
+}
+.offcanvas-body form {
+  gap: 0.5rem;
+}
+.offcanvas-body .search-btn {
+  padding: 0 1rem;
+  white-space: nowrap;
+}
+.offcanvas-mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+.offcanvas-mobile-actions .btn-signup-mobile {
+  text-align: center;
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  color: #333 !important;
+  text-decoration: none;
+  font-weight: 500;
+}
+.offcanvas-mobile-actions .btn-login-mobile {
+  text-align: center;
+  padding: 0.6rem;
+  border-radius: 25px;
+  background-color: #0d9488;
+  color: white !important;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.offcanvas-mobile-actions .btn-logout-mobile {
+  text-align: center;
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  color: #333 !important;
+  text-decoration: none;
+  font-weight: 500;
+}
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
@@ -154,14 +207,16 @@
                                 <i class="fa-solid fa-magnifying-glass"></i> Search
                           </button>
                     </form>
+                    <div class="offcanvas-mobile-actions">
                     <% if (!currUser) { %>
-                          <a class="nav-link" href="/signup" style="display: inline-block;margin-right: 20%;"><b>Signup</b></a>
-                          <a class="nav-link" style="display: inline-block;" href="/login">
-                                <i class="fa-regular fa-circle-user"></i> <b>Login</b>
+                          <a class="btn-signup-mobile" href="/signup">Signup</a>
+                          <a class="btn-login-mobile" href="/login">
+                                <i class="fa-regular fa-circle-user"></i> Login
                           </a>
                           <% } else { %>
-                                <a class="nav-link" href="/logout">Logout</a>
+                                <a class="btn-logout-mobile" href="/logout">Logout</a>
                                 <% } %>
+                    </div>
               </div>
         </div>
   </div>
